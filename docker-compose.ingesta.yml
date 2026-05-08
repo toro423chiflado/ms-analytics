@@ -1,20 +1,58 @@
-version: "3.9"
+name: urate-ingesta
+
+networks:
+  ingesta_net:
+    driver: bridge
 
 services:
   ingest-users:
-    build: ./containers/ingest-users
-    image: urate/ingest-users:latest
-    env_file:
-      - ./containers/ingest-users/.env
+    image: stevericapads/ingest-users:latest
+    container_name: utec_ingest_users
+    networks: [ingesta_net]
+    restart: "no"
+    environment:
+      SERVICE_NAME: users
+      SOURCE_DB_URL: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_HOST}:5432/${POSTGRES_DB}
+      TABLES: ${USERS_TABLES}
+      S3_BUCKET: ${S3_BUCKET}
+      AWS_REGION: ${AWS_REGION}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+      S3_PREFIX: raw
+      OUTPUT_FORMAT: csv
 
   ingest-content:
-    build: ./containers/ingest-content
-    image: urate/ingest-content:latest
-    env_file:
-      - ./containers/ingest-content/.env
+    image: stevericapads/ingest-content:latest
+    container_name: utec_ingest_content
+    networks: [ingesta_net]
+    restart: "no"
+    environment:
+      SERVICE_NAME: content
+      SOURCE_DB_URL: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${DB_HOST}:3306/${MYSQL_DB}
+      TABLES: ${CONTENT_TABLES}
+      S3_BUCKET: ${S3_BUCKET}
+      AWS_REGION: ${AWS_REGION}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+      S3_PREFIX: raw
+      OUTPUT_FORMAT: csv
 
   ingest-reviews:
-    build: ./containers/ingest-reviews
-    image: urate/ingest-reviews:latest
-    env_file:
-      - ./containers/ingest-reviews/.env
+    image: stevericapads/ingest-reviews:latest
+    container_name: utec_ingest_reviews
+    networks: [ingesta_net]
+    restart: "no"
+    environment:
+      SERVICE_NAME: reviews
+      MONGO_URI: mongodb://${DB_HOST}:27017
+      MONGO_DATABASE: ${MONGO_DB}
+      COLLECTIONS: ${REVIEWS_COLLECTIONS}
+      S3_BUCKET: ${S3_BUCKET}
+      AWS_REGION: ${AWS_REGION}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+      S3_PREFIX: raw
+      OUTPUT_FORMAT: csv

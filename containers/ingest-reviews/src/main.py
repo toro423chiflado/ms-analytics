@@ -58,12 +58,15 @@ def main() -> None:
     s3_client = boto3.client("s3", region_name=region)
     ingestion_ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
-    for collection_name in collections:
-        df = load_collection(mongo_client, mongo_database, collection_name)
-        payload, extension = to_buffer(df, output_format)
-        key = f"{s3_prefix}/{service_name}/{collection_name}/ingestion_ts={ingestion_ts}/{collection_name}.{extension}"
-        upload_to_s3(s3_client, bucket, key, payload)
-        print(f"Uploaded: s3://{bucket}/{key} rows={len(df)}")
+    try:
+        for collection_name in collections:
+            df = load_collection(mongo_client, mongo_database, collection_name)
+            payload, extension = to_buffer(df, output_format)
+            key = f"{s3_prefix}/{service_name}/{collection_name}/ingestion_ts={ingestion_ts}/{collection_name}.{extension}"
+            upload_to_s3(s3_client, bucket, key, payload)
+            print(f"Uploaded: s3://{bucket}/{key} rows={len(df)}")
+    finally:
+        mongo_client.close()
 
 
 if __name__ == "__main__":
