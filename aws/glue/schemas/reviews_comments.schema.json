@@ -1,0 +1,9 @@
+[
+  { "Name": "id", "Type": "string" },
+  { "Name": "review_id", "Type": "string" },
+  { "Name": "user_id", "Type": "string" },
+  { "Name": "course_id", "Type": "string" },
+  { "Name": "comment", "Type": "string" },
+  { "Name": "created_at", "Type": "string" },
+  { "Name": "updated_at", "Type": "string" }
+]

@@ -1,0 +1,10 @@
+[
+  { "Name": "id", "Type": "int" },
+  { "Name": "profesor_id", "Type": "string" },
+  { "Name": "curso_id", "Type": "int" },
+  { "Name": "semestre", "Type": "string" },
+  { "Name": "seccion", "Type": "string" },
+  { "Name": "activo", "Type": "boolean" },
+  { "Name": "created_at", "Type": "string" },
+  { "Name": "updated_at", "Type": "string" }
+]

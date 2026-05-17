@@ -1,0 +1,9 @@
+[
+  { "Name": "id", "Type": "string" },
+  { "Name": "usuario_id", "Type": "string" },
+  { "Name": "token", "Type": "string" },
+  { "Name": "expires_at", "Type": "string" },
+  { "Name": "revoked_at", "Type": "string" },
+  { "Name": "created_at", "Type": "string" },
+  { "Name": "updated_at", "Type": "string" }
+]

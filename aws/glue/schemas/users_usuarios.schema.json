@@ -1,0 +1,10 @@
+[
+  { "Name": "id", "Type": "string" },
+  { "Name": "nombres", "Type": "string" },
+  { "Name": "apellidos", "Type": "string" },
+  { "Name": "correo", "Type": "string" },
+  { "Name": "rol", "Type": "string" },
+  { "Name": "estado", "Type": "string" },
+  { "Name": "created_at", "Type": "string" },
+  { "Name": "updated_at", "Type": "string" }
+]

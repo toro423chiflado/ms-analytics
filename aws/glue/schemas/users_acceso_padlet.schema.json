@@ -1,0 +1,10 @@
+[
+  { "Name": "id", "Type": "string" },
+  { "Name": "usuario_id", "Type": "string" },
+  { "Name": "provider", "Type": "string" },
+  { "Name": "access_token", "Type": "string" },
+  { "Name": "refresh_token", "Type": "string" },
+  { "Name": "expires_at", "Type": "string" },
+  { "Name": "created_at", "Type": "string" },
+  { "Name": "updated_at", "Type": "string" }
+]

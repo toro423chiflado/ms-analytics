@@ -1,0 +1,11 @@
+[
+  { "Name": "id", "Type": "int" },
+  { "Name": "carrera_id", "Type": "int" },
+  { "Name": "codigo", "Type": "string" },
+  { "Name": "nombre", "Type": "string" },
+  { "Name": "creditos", "Type": "int" },
+  { "Name": "ciclo", "Type": "int" },
+  { "Name": "activo", "Type": "boolean" },
+  { "Name": "created_at", "Type": "string" },
+  { "Name": "updated_at", "Type": "string" }
+]
